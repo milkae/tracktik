@@ -1,14 +1,25 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, createLocalVue } from "@vue/test-utils";
+import Vuex from "vuex";
 import Sites from "@/views/Sites.vue";
 import SitesList from "@/components/SitesList.vue";
 import SitesMenu from "@/components/SitesMenu.vue";
+import initialState from "@/store/state";
+import siteFixture from "./fixtures/site";
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
+
+interface State {
+  sites: object[];
+}
 
 describe("Sites", () => {
+  let state: State;
+
   const build = () => {
     const wrapper = shallowMount(Sites, {
-      data: () => ({
-        sites: []
-      })
+      localVue,
+      store: new Vuex.Store({ state })
     });
 
     return {
@@ -17,6 +28,10 @@ describe("Sites", () => {
       sitesMenu: () => wrapper.find(SitesMenu)
     };
   };
+
+  beforeEach(() => {
+    state = { ...initialState };
+  });
 
   it("renders the component", () => {
     const { wrapper } = build();
@@ -32,11 +47,9 @@ describe("Sites", () => {
   });
 
   it("passes a binded sites prop to sites list component", () => {
-    const { wrapper, sitesList } = build();
-    wrapper.setData({
-      sites: [{ name: "Site name" }]
-    });
+    state.sites = [siteFixture];
+    const { sitesList } = build();
 
-    expect((sitesList().vm as any).sites).toBe((wrapper.vm as any).sites);
+    expect((sitesList().vm as any).sites).toBe(state.sites);
   });
 });

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import SitesList from "@/components/SitesList";
 import SitesMenu from "@/components/SitesMenu";
 
@@ -15,10 +16,6 @@ export default {
     SitesList,
     SitesMenu
   },
-  data() {
-    return {
-      sites: []
-    };
-  }
+  computed: mapState(["sites"])
 };
 </script>
