@@ -1,16 +1,25 @@
 <template>
-  <div>
-    Sites list
-  </div>
+  <ul class="sites-list">
+    <SitesListItem v-for="site in sites" />
+  </ul>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import Vue, { PropOptions } from "vue";
+import SitesListItem from "@/components/SitesListItem";
 
 interface Site {}
 
-@Component
-export default class SitesList extends Vue {
-  @Prop({ type: Array, required: true }) readonly sites!: Site;
-}
+export default Vue.extend({
+  name: "SitesList",
+
+  props: {
+    sites: {
+      type: Array,
+      required: true
+    } as PropOptions<Site[]>
+  },
+
+  components: { SitesListItem }
+});
 </script>
