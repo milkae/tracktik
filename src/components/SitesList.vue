@@ -1,6 +1,6 @@
 <template>
   <ul class="sites-list">
-    <SitesListItem v-for="site in sites" />
+    <SitesListItem v-for="site in sites" :site="site" />
   </ul>
 </template>
 

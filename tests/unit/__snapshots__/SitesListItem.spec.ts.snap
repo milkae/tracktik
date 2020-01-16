@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SitesListItem renders the component 1`] = `
+<div class="sites-list__item"><img src="http://lorempixel.com/640/480/city" class="sites-list__item__image">
+  <div class="sites-list__item__title">
+    Kids Tower
+  </div>
+  <div class="sites-list__item__contact">
+    undefined undefined
+  </div>
+  <router-link-stub to="site/ltuq30QviB" class="sites-list__item__link">&gt;</router-link-stub>
+</div>
+`;
