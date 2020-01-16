@@ -1,7 +1,7 @@
 <template>
   <div>
     <SitesList :sites="sites" />
-    <SitesMenu />
+    <SitesMenu @submitted="searchSites" />
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   components: {
     SitesList,
     SitesMenu
+  },
+  methods: {
+    searchSites({ filters, query, sort }) {
+      this.$store.dispatch("SEARCH_SITES", { filters, query, sort });
+    }
   },
   computed: mapState(["sites"])
 };
