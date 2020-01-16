@@ -38,11 +38,23 @@ describe("Sites", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("renders main child components", () => {
-    const { sitesList, sitesMenu } = build();
+  it("renders sitesMenu", () => {
+    const { sitesMenu } = build();
+
+    expect(sitesMenu().exists()).toBe(true);
+  });
+
+  it("does not renders sitesList if sites prop is empty", () => {
+    const { sitesList } = build();
+
+    expect(sitesList().exists()).toBe(false);
+  });
+
+  it("renders sitesList if sites prop is not empty", () => {
+    state.sites = sitesFixture;
+    const { sitesList } = build();
 
     expect(sitesList().exists()).toBe(true);
-    expect(sitesMenu().exists()).toBe(true);
   });
 
   it("passes a binded sites prop to sites list component", () => {

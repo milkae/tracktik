@@ -2,7 +2,7 @@
 
 exports[`Sites renders the component 1`] = `
 <div>
-  <siteslist-stub sites=""></siteslist-stub>
   <sitesmenu-stub></sitesmenu-stub>
+  <!---->
 </div>
 `;

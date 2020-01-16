@@ -1,7 +1,7 @@
 <template>
   <div>
-    <SitesList :sites="sites" />
     <SitesMenu @submitted="searchSites" />
+    <SitesList v-if="sites.length" :sites="sites" />
   </div>
 </template>
 
