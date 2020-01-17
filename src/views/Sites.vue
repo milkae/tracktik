@@ -18,9 +18,9 @@ export default {
   },
   methods: {
     searchSites({ filters, query, sort }) {
-      this.$store.dispatch("SEARCH_SITES", { filters, query, sort });
+      this.$store.dispatch("sites/SEARCH_SITES", { filters, query, sort });
     }
   },
-  computed: mapState(["sites"])
+  computed: mapState("sites", ["sites"])
 };
 </script>

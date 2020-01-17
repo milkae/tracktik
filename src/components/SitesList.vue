@@ -7,8 +7,7 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import SitesListItem from "@/components/SitesListItem";
-
-interface Site {}
+import { Site } from "@/store/sites/type";
 
 export default Vue.extend({
   name: "SitesList",

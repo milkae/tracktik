@@ -6,11 +6,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-
-interface Sort {
-  field: string;
-  order: string;
-}
+import { Sort } from "@/store/sites/type";
 
 export default Vue.extend({
   name: "SitesMenuSort",

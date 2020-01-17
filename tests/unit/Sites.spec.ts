@@ -1,23 +1,32 @@
+jest.mock("@/store/sites/actions");
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import Sites from "@/views/Sites.vue";
 import SitesList from "@/components/SitesList.vue";
 import SitesMenu from "@/components/SitesMenu.vue";
-import initialState, { RootState } from "@/store/state";
-jest.mock("@/store/actions");
-import actions from "@/store/actions";
+import { SitesState } from "@/store/sites/types";
+import { state as initialState } from "@/store/sites/index";
+import { actions } from "@/store/sites/actions";
 import sitesFixture from "./fixtures/sites";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("Sites", () => {
-  let state: RootState;
+  let state: SitesState;
 
   const build = () => {
     const wrapper = shallowMount(Sites, {
       localVue,
-      store: new Vuex.Store({ state, actions })
+      store: new Vuex.Store({
+        modules: {
+          sites: {
+            namespaced: true,
+            state,
+            actions
+          }
+        }
+      })
     });
 
     return {
@@ -69,7 +78,6 @@ describe("Sites", () => {
     const { sitesMenu } = build();
 
     sitesMenu().vm.$emit("submitted", { filters });
-
     expect(actions.SEARCH_SITES).toHaveBeenCalled();
     expect((actions.SEARCH_SITES as jest.Mock).mock.calls[0][1]).toEqual({
       filters

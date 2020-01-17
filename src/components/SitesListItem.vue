@@ -13,16 +13,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-
-interface Contact {
-  firstname: string;
-  lastname: string;
-}
-
-interface Site {
-  title: string;
-  contacts: { main: Contact };
-}
+import { Site, Contact } from "@/store/sites/type";
 
 export default Vue.extend({
   name: "SitesListItem",
