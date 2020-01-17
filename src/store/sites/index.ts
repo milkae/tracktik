@@ -1,5 +1,6 @@
 import { Module } from "vuex";
 import { actions } from "./actions";
+import { mutations } from "./mutations";
 import { SitesState } from "./types";
 import { RootState } from "../types";
 
@@ -18,5 +19,5 @@ export const sites: Module<SitesState, RootState> = {
   namespaced,
   state,
   actions,
-  mutations: {}
+  mutations
 };

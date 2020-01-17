@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapState } from "vuex";
 import SitesMenuFilters from "@/components/SitesMenuFilters";
 import SitesMenuSearch from "@/components/SitesMenuSearch";
 import SitesMenuSort from "@/components/SitesMenuSort";
@@ -15,15 +16,7 @@ import SitesMenuSort from "@/components/SitesMenuSort";
 export default Vue.extend({
   name: "SitesMenu",
 
-  data() {
-    return {
-      options: {
-        filters: [],
-        sort: { field: "createdAt", order: "asc" },
-        search: ""
-      }
-    };
-  },
+  computed: mapState("sites", { options: state => state.sitesMenuOptions }),
 
   watch: {
     options: function(newOptions) {

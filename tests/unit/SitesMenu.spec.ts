@@ -1,12 +1,31 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, createLocalVue } from "@vue/test-utils";
 import SitesMenu from "@/components/SitesMenu.vue";
 import SitesMenuFilters from "@/components/SitesMenuFilters.vue";
 import SitesMenuSort from "@/components/SitesMenuSort.vue";
 import SitesMenuSearch from "@/components/SitesMenuSearch.vue";
+import Vuex from "vuex";
+import { state as initialState } from "@/store/sites/index";
+import { actions } from "@/store/sites/actions";
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe("SitesMenu", () => {
+  let state: any;
+
   const build = () => {
-    const wrapper = shallowMount(SitesMenu);
+    const wrapper = shallowMount(SitesMenu, {
+      localVue,
+      store: new Vuex.Store({
+        modules: {
+          sites: {
+            namespaced: true,
+            state,
+            actions
+          }
+        }
+      })
+    });
 
     return {
       wrapper,
@@ -15,6 +34,11 @@ describe("SitesMenu", () => {
       sitesMenuSearch: () => wrapper.find(SitesMenuSearch)
     };
   };
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+    state = { ...initialState };
+  });
 
   it("renders the component", () => {
     const { wrapper } = build();
