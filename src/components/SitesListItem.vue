@@ -12,32 +12,23 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from "vue";
-import { Site, Contact } from "@/store/sites/type";
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { Site, SiteContact } from "@/store/sites/types";
 
-export default Vue.extend({
-  name: "SitesListItem",
-
-  props: {
-    site: {
-      type: Object,
-      required: true
-    }
-  } as PropOptions<Site>,
-
-  computed: {
-    imageUrl(): string {
-      return this.site.images[0];
-    },
-    mainContact(): Contact {
-      return this.site.contacts.main;
-    },
-    mainContactName(): string {
-      return this.mainContact.firstname + " " + this.mainContact.lastname;
-    },
-    url(): string {
-      return `site/${this.site.id}`;
-    }
+@Component
+export default class SitesListItem extends Vue {
+  @Prop({ type: Object, required: true }) readonly site!: Site;
+  get imageUrl(): string {
+    return this.site.images[0];
   }
-});
+  get mainContact(): SiteContact {
+    return this.site.contacts.main;
+  }
+  get mainContactName(): string {
+    return this.mainContact.firstName + " " + this.mainContact.lastName;
+  }
+  get url(): string {
+    return `site/${this.site.id}`;
+  }
+}
 </script>

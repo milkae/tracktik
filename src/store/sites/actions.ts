@@ -4,7 +4,7 @@ import { SitesState } from "./types";
 import api from "@/api";
 
 export const actions: ActionTree<SitesState, RootState> = {
-  SEARCH_SITES({ commit }, { options }) {
+  SEARCH_SITES({ commit, state }, { options = state.sitesMenuOptions }): any {
     return new Promise(async (resolve, reject) => {
       try {
         const sites = await api.searchSites(options);

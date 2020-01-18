@@ -6,21 +6,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import Vue from "vue";
+import { State, Action, Getter } from "vuex-class";
+import Component from "vue-class-component";
+import { Site, SiteContact } from "@/store/sites/types";
 import SitesList from "@/components/SitesList";
 import SitesMenu from "@/components/SitesMenu";
+const namespace = "sites";
 
-export default {
-  name: "Sites",
+@Component({
   components: {
     SitesList,
     SitesMenu
-  },
-  methods: {
-    searchSites({ filters, query, sort }) {
-      this.$store.dispatch("sites/SEARCH_SITES", { filters, query, sort });
-    }
-  },
-  computed: mapState("sites", ["sites"])
-};
+  }
+})
+export default class Sites extends Vue {
+  @State("sites", { namespace }) sites;
+  @Action("SEARCH_SITES", { namespace }) searchSites;
+
+  mounted() {
+    this.searchSites({});
+  }
+}
 </script>

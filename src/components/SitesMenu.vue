@@ -9,14 +9,16 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import SitesMenuFilters from "@/components/SitesMenuFilters";
-import SitesMenuSearch from "@/components/SitesMenuSearch";
-import SitesMenuSort from "@/components/SitesMenuSort";
+import SitesMenuFilters from "@/components/SitesMenuFilters.vue";
+import SitesMenuSearch from "@/components/SitesMenuSearch.vue";
+import SitesMenuSort from "@/components/SitesMenuSort.vue";
 
 export default Vue.extend({
   name: "SitesMenu",
 
-  computed: mapState("sites", { options: state => state.sitesMenuOptions }),
+  computed: mapState("sites", {
+    options: (state: any) => state.sitesMenuOptions
+  }),
 
   watch: {
     options: function(newOptions) {
