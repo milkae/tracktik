@@ -23,5 +23,8 @@ export default {
     return instance
       .get(`/sites?_page=1&${formatOptions(options)}`)
       .then((result: any) => result.data);
+  },
+  getClients() {
+    return instance.get(`/clients`).then((result: any) => result.data);
   }
 };
