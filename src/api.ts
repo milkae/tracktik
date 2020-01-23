@@ -8,14 +8,17 @@ const instance = axios.create({
 
 export const formatOptions = (options: any) => {
   const sort = `_sort=${options.sort.field}&_order=${options.sort.order}`;
-  const filters = options.filters
-    ? `&${options.filters
-        .map(({ key, value }: any) => `${key}=${value}`)
-        .join("&")}`
-    : "";
-  const search = options.search ? `&q=${options.search}` : "";
+  const filters =
+    options.filters &&
+    Object.entries(options.filters).reduce((acc: string, [key, value]: any) => {
+      if (!value) {
+        return acc;
+      }
+      return acc + `&${key}=${value}`;
+    }, "");
+  const search = options.search && `&q=${options.search}`;
 
-  return sort + filters + search;
+  return sort + (filters || "") + (search || "");
 };
 
 export default {

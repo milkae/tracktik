@@ -13,7 +13,7 @@ describe("store actions", () => {
 
   it("searches for sites", async () => {
     const options = {
-      filters: ["New"],
+      filters: { clientId: "1" },
       sort: { field: "createdAt", order: "asc" },
       search: "Adonis"
     };

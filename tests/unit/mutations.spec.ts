@@ -21,7 +21,7 @@ describe("mutations", () => {
 
   it("updates sites menu options", () => {
     const newOptions = {
-      filters: ["New"],
+      filters: { clientId: "1" },
       sort: { field: "createdAt", order: "asc" },
       search: "Adonis"
     };

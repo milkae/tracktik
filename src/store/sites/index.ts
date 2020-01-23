@@ -7,7 +7,7 @@ import { RootState } from "../types";
 export const state: SitesState = {
   sites: [],
   sitesMenuOptions: {
-    filters: [],
+    filters: {},
     sort: { field: "createdAt", order: "asc" },
     search: ""
   }

@@ -22,7 +22,7 @@ export interface Sort {
 }
 
 export interface SitesMenuOptions {
-  filters: string[];
+  filters: object;
   sort: Sort;
   search: string;
 }

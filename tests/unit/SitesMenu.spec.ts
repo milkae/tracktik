@@ -57,7 +57,7 @@ describe("SitesMenu", () => {
   it('calls "submitted" event when options changes', () => {
     const { wrapper } = build();
     const newOptions = {
-      filters: ["New"],
+      filters: { clientId: "1" },
       sort: { field: "createdAt", order: "asc" },
       search: "Adonis"
     };
@@ -75,7 +75,7 @@ describe("SitesMenu", () => {
       sitesMenuSearch
     } = build();
     const options = {
-      filters: ["New"],
+      filters: { clientId: "1" },
       sort: { field: "createdAt", order: "asc" },
       search: "Adonis"
     };
