@@ -1,21 +1,21 @@
 <template>
   <div>
-    Sites Menu Sort
+    <button @click="onSort('asc')">Asc</button>
+    <button @click="onSort('desc')">Desc</button>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from "vue";
-import { Sort } from "@/store/sites/types";
+import { Vue, Component, Watch, Prop } from "vue-property-decorator";
+import { Mutation } from "vuex-class";
 
-export default Vue.extend({
-  name: "SitesMenuSort",
-
-  props: {
-    sort: {
-      type: Object,
-      required: true
-    } as PropOptions<Sort>
+@Component
+export default class SitesMenuSort extends Vue {
+  @Prop(Object) readonly sort: object;
+  @Mutation("UPDATE_OPTIONS", { namespace: "sites" }) updateOptions;
+  @Watch("sortValue")
+  onSort(val: string) {
+    this.updateOptions({ sort: { field: "title", order: val } });
   }
-});
+}
 </script>

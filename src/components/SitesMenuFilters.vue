@@ -17,7 +17,7 @@ const namespace = "clients";
 
 @Component
 export default class SitesMenuFilters extends Vue {
-  @Prop(Object) readonly filters: object;
+  @Prop(Object) readonly filters: any;
   @State("clients", { namespace }) clients;
   @Action("GET_CLIENTS", { namespace }) getClients;
   @Mutation("UPDATE_OPTIONS", { namespace: "sites" }) updateOptions;
