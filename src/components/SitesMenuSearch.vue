@@ -1,20 +1,22 @@
 <template>
   <div>
-    Sites Menu Search
+    <input v-model="searchValue" placeholder="Search" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from "vue";
+import { Vue, Component, Watch, Prop } from "vue-property-decorator";
+import { Mutation } from "vuex-class";
 
-export default Vue.extend({
-  name: "SitesMenuSearch",
-
-  props: {
-    search: {
-      type: String,
-      required: true
-    } as PropOptions<string>
+@Component
+export default class SitesMenuSearch extends Vue {
+  @Prop(String) readonly search: string;
+  @Mutation("UPDATE_OPTIONS", { namespace: "sites" }) updateOptions;
+  @Watch("searchValue")
+  onSearchChange(val: string, oldVal: string) {
+    this.updateOptions({ search: val });
   }
-});
+
+  searchValue = this.search || "";
+}
 </script>
