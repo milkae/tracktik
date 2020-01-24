@@ -22,3 +22,10 @@ export default Vue.extend({
   components: { SitesListItem }
 });
 </script>
+
+<style scoped lang="scss">
+.sites-list {
+  padding: 0;
+  margin: 0;
+}
+</style>
