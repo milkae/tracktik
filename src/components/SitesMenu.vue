@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="sites-menu">
     <SitesMenuFilters :filters="options.filters" />
-    <SitesMenuSearch :search="options.search" />
     <SitesMenuSort :sort="options.sort" />
+    <SitesMenuSearch :search="options.search" />
   </div>
 </template>
 
@@ -29,3 +29,13 @@ export default Vue.extend({
   components: { SitesMenuFilters, SitesMenuSearch, SitesMenuSort }
 });
 </script>
+
+<style scoped lang="scss">
+.sites-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
+</style>

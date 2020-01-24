@@ -56,6 +56,7 @@ export default class SitesListItem extends Vue {
   border-top: 1px solid grey;
 
   &__image {
+    flex-shrink: 0;
     margin-right: 0.5rem;
     overflow: hidden;
     border-radius: 50%;
